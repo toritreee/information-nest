@@ -3,6 +3,7 @@ import { Day, Schedule, Subject, db } from "@/app/db"
 import Time from "@/app/time";
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { MdRemove } from "react-icons/md";
 
 export default function Create() {
   const [schedule, setSchedule] = useState<Schedule>({
@@ -40,6 +41,13 @@ export default function Create() {
                 console.log(v, e.target.value, i)
                 setSubjects([...subjects])
               }} value={v.name} className="p-2 outline-none border-b-2 border-gray-300 focus:mb-0 focus:border-blue-400 flex-auto" />
+              <button onClick={() => {
+                delete subjects[i]
+                subjects.length -=1
+                setSubjects([...subjects])
+              }}>
+                <MdRemove className="w-8 h-8 m-1 p-2 block hover:bg-slate-200 rounded-full" />
+              </button>
             </li>
           )}
           <li className="bg-blue-500 rounded-md w-full">
@@ -50,18 +58,27 @@ export default function Create() {
       <section className="my-10 block h-screen">
         <h1 className="text-gray-600 mb-3">予定表</h1>
         <ul className="flex overflow-x-scroll h-[80%] gap-16">
-          {schedules.map((v, schedulesId) => <li key={schedulesId} className="min-w-[300px] border-2 border-gray-400 rounded-md p-6">
+          {schedules.map((v, schedulesId) => <li key={schedulesId} className="min-w-[300px] border-2 border-gray-400 rounded-md p-6 overflow-scroll">
             <article>
               <h1>{new Intl.DateTimeFormat('ja-JP', { weekday: "long" }).format(new Date(2023, 3, 2 + v.day))}</h1>
               <ul className="flex gap-4 flex-col">
                 {v.subjects.map((sub, i) => <li key={i} className="border-2 border-gray-300 rounded-md p-2 flex flex-col gap-2">
-                  <select className="outline-none w-full" onChange={e => {
-                    schedules[schedulesId].subjects[i].subjectId = Number(e.target.value)
-                    setSchedules(schedules)
-                  }}>
-                    <option value="-1">Select</option>
-                    {subjects.map((v, i) => <option value={i} key={i}>{v.name}</option>)}
-                  </select>
+                  <div className="flex">
+                    <select className="outline-none w-full flex-auto" onChange={e => {
+                      schedules[schedulesId].subjects[i].subjectId = Number(e.target.value)
+                      setSchedules(schedules)
+                    }}>
+                      <option value="-1">Select</option>
+                      {subjects.map((v, i) => <option value={i} key={i}>{v.name}</option>)}
+                    </select>
+                    <button onClick={() => {
+                      delete schedules[schedulesId].subjects[i]
+                      schedules[schedulesId].subjects.length -= 1
+                      setSchedules([...schedules])
+                    }}>
+                      <MdRemove className="w-8 h-8 m-1 p-2 block hover:bg-slate-200 rounded-full" />  
+                    </button>
+                  </div>
                   <div className="flex gap-2">
                     <input type="time" onChange={e => {
                       console.log(schedules[schedulesId].subjects[i])
@@ -84,7 +101,8 @@ export default function Create() {
           </li>)}
           <li className="bg-blue-500 rounded-md min-w-[300px]">
             <button onClick={e => {
-              setSchedules([...schedules, { subjects: [], day: schedules.length, name: "a" }])
+              const lastSchedule = schedules.at(-1)
+              setSchedules([...schedules, { subjects: lastSchedule?[...lastSchedule.subjects]:[], day: schedules.length, name: "a" }])
             }} className="text-white text-center inline-block w-full h-full p-3">追加</button>
           </li>
         </ul>
