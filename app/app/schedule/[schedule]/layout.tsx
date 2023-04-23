@@ -1,6 +1,7 @@
 "use client"
 import { db } from "@/app/db"
 import { useLiveQuery } from "dexie-react-hooks"
+import Link from "next/link"
 import { MdOutlineKeyboardArrowLeft} from "react-icons/md"
 
 function ScheduleName({ id }: { id: string }) {
@@ -8,8 +9,8 @@ function ScheduleName({ id }: { id: string }) {
     return db.schedule.get(Number(id))
   },[id])
   return schedule
-    ? <h3>{schedule.name}</h3>
-    : <h3>Loading...</h3>  
+    ? <h3 className="text-xl">{schedule.name}</h3>
+    : <h3 className="text-xl">Loading...</h3>  
 }
 
 export default function ScheduleLayout({
@@ -21,14 +22,14 @@ export default function ScheduleLayout({
     schedule: string
   }
 }) {
-  return <html lang="ja">
-    <head />
-    <body>
-      <header>
-        <MdOutlineKeyboardArrowLeft/>
+  return <>
+      <header className="p-5 pb-2 ps-2 border-b-2 border-gray-300 flex items-center h-17 sticky top-0 bg-white">
+        <Link href="/app/">
+          <MdOutlineKeyboardArrowLeft className="w-10 h-10" /></Link>
         <ScheduleName id={params.schedule} />
       </header>
-      {children}
-    </body>
-  </html>
+      <div className="mx-5">
+        {children}
+      </div>
+    </>
 }
