@@ -28,7 +28,7 @@ export default function ScheduleLayout({
           <MdOutlineKeyboardArrowLeft className="w-10 h-10" /></Link>
         <ScheduleName id={params.schedule} />
       </header>
-      <div className="mx-5">
+      <div className="mx-5 block">
         {children}
       </div>
     </>

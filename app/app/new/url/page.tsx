@@ -12,7 +12,7 @@ export default function QR() {
     }
     const param = new URL(location.href).searchParams.get("sc")
     if (!param) return
-    const schedule = JSON.parse(param) as Schedule
+    const schedule = JSON.parse(atob(param)) as Schedule
     schedule.id = undefined
     return schedule
   })()
