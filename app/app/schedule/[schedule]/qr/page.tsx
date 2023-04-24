@@ -5,6 +5,8 @@ import { useLiveQuery } from "dexie-react-hooks"
 import { useQRCode } from "next-qrcode"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { displayValue } from "@tanstack/react-query-devtools/build/lib/utils"
+import { Padyakke_Expanded_One } from "next/font/google"
+import pako from "pako"
 
 export default function QR({ params }: {
   params: {
