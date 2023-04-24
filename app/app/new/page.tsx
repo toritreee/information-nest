@@ -20,6 +20,7 @@ export default function New() {
           <Link href={"/app/new/create"} className="w-full h-44 flex items-center border-2 border-blue-500 rounded-xl ">
             <p className="text-center block w-full text-xl">新規作成</p>
           </Link>
+          <Link href={"/app/new/url"} className="text-gray-500 text-center">または、URLで読み取り</Link>
         </main>
       </div>
     </div>
