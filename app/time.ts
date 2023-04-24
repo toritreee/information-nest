@@ -6,6 +6,6 @@ export default class Time {
   }
 
   static getDisplayTime(time:Time) {
-    return `${time.hour}:${time.minutes}`
+    return `${time.hour||0}:${time.minutes||0}`
   }
 }

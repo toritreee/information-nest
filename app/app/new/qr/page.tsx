@@ -27,7 +27,9 @@ export default function QR() {
                 if (!result) return
                 setDataUrl(result.getText())
               }}
-              constraints={({})}
+              constraints={({
+                facingMode: { ideal:"environment"}
+              })}
             />
             : <div className="flex flex-col w-full gap-6">
               <h1 className="text-xl">「{obj.name}」をこの端末に追加しますか?</h1>
