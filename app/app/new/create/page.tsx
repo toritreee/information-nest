@@ -110,8 +110,6 @@ export default function Create() {
         <button onClick={e => {
           schedule.schedules = schedules
           schedule.subjects = subjects
-          console.log(schedule)
-          alert("")
           db.schedule.add(schedule).then(v => {
             router.push("/app/schedule/" + v)
           })
