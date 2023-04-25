@@ -38,6 +38,7 @@ export default function QR() {
                 if (!par)return
                 const schedule = JSON.parse(decodeURIComponent(atob(par))) as Schedule
                 schedule.id = undefined
+                schedule.schedules[6].subjects.splice(2)
                 setSchedule(schedule)
               }}>Download</button>
             </div>
