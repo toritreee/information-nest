@@ -1,5 +1,5 @@
 "use client";
-import { Day, Schedule, Subject, db } from "@/app/db"
+import { Day, Schedule, Subject, SubjectMeta, db } from "@/app/db"
 import Time from "@/app/time";
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -72,8 +72,7 @@ export default function Create() {
                       {subjects.map((v, i) => <option value={i} key={i}>{v.name}</option>)}
                     </select>
                     <button onClick={() => {
-                      delete schedules[schedulesId].subjects[i]
-                      schedules[schedulesId].subjects.length -= 1
+                      schedules[schedulesId].subjects.splice(i,1)
                       setSchedules([...schedules])
                     }}>
                       <MdRemove className="w-8 h-8 m-1 p-2 block hover:bg-slate-200 rounded-full" />  
@@ -102,7 +101,7 @@ export default function Create() {
           <li className="bg-blue-500 rounded-md min-w-[300px]">
             <button onClick={e => {
               const lastSchedule = schedules.at(-1)
-              setSchedules([...schedules, { subjects: lastSchedule?[...lastSchedule.subjects]:[], day: schedules.length, name: "a" }])
+              setSchedules([...schedules, { subjects: lastSchedule ? [...lastSchedule.subjects.map<SubjectMeta>(v => ({ from: { ...v.from }, subjectId: -1, to: { ...v.to }, break: new Time(10, 0) }))]:[], day: schedules.length, name: "a" }])
             }} className="text-white text-center inline-block w-full h-full p-3">追加</button>
           </li>
         </ul>
