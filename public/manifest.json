@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "information-nest",
+  "short_name": "I-N",
+  "start_url": "app",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "予定表",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}
