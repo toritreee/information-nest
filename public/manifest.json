@@ -27,6 +27,7 @@
     }
   ],
   "display_override": [
+    "window-controls-overlay",
     "minimal-ui"
   ],
   "shortcuts": [
@@ -36,5 +37,7 @@
       "description": "スケジュールを作成する"
     }
   ],
-  "launch_handler":"focus-existing"
+  "launch_handler":{
+    "client_mode": "navigate-existing"
+  }
 }
