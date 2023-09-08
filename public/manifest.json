@@ -14,5 +14,26 @@
       "purpose": "any"
     }
   ],
-  "id":"/app"
+  "id":"/app",
+  "orientation":"any",
+  "theme_color":"#404189",
+  "categories":["education","navigation","utilities"],
+  "screenshots": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "platform": "narrow"
+    }
+  ],
+  "display_override": [
+    "minimal-ui"
+  ],
+  "shortcuts": [
+    {
+      "name": "New Calender",
+      "url": "/new/create",
+      "description": "スケジュールを作成する"
+    }
+  ]
 }
