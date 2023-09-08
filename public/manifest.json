@@ -35,5 +35,6 @@
       "url": "/new/create",
       "description": "スケジュールを作成する"
     }
-  ]
+  ],
+  "launch_handler":"focus-existing"
 }
