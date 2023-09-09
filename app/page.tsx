@@ -7,11 +7,6 @@ import { useEffect } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  useEffect(() => {
-    navigator.serviceWorker.register('/sw.js', {
-      scope: '/',
-    })
-  })
   return (
     <main className="flex flex-col gap-3">
       予定表を表示するサイトのβバージョンです。エラーが発生した場合には下のボタンを押してリセットしてください
