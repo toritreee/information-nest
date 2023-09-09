@@ -9,8 +9,35 @@
   "icons": [
     {
       "src": "/icon.png",
-      "sizes": "144x144",
-      "type": "image/png"
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
-  ]
+  ],
+  "id":"/app",
+  "orientation":"any",
+  "theme_color":"#404189",
+  "categories":["education","navigation","utilities"],
+  "screenshots": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "platform": "narrow"
+    }
+  ],
+  "display_override": [
+    "window-controls-overlay",
+    "minimal-ui"
+  ],
+  "shortcuts": [
+    {
+      "name": "New Calender",
+      "url": "/new/create",
+      "description": "スケジュールを作成する"
+    }
+  ],
+  "launch_handler":{
+    "client_mode": "navigate-existing"
+  }
 }
